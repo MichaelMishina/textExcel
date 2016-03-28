@@ -8,6 +8,7 @@ public class spreadSheet {
     public boolean finisher = false;
     private String Header = "            |      A      |      B      |      C      |      D      |      E      |     F      |      G      |";
     private String Separator = "------------+-------------+-------------+-------------+-------------+-------------+------------+-------------+";
+    Cell[][] spreadSheetCells = new Cell[7][10];
     public spreadSheet(){}
 
     public void commandInput(Scanner commandScanner){
@@ -29,6 +30,7 @@ public class spreadSheet {
 
                     }
                 }
+
 
             } else if ((input1.toLowerCase().contains("exit"))) {
                 System.out.println("Process: end");
