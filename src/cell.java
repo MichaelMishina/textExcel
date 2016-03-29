@@ -2,20 +2,18 @@
  * Created by bal_mcmishina on 3/8/2016.
  */
 
-public class cell {
+public class Cell {
 
-    private int row;
-    private int col;
-    boolean isEmpty;
-    private String emptyCell = "            ";
-    public cell(char row, int col){}
+    private static final String EMPTY_CELL_VALUE = "<empty>";
+    private static final String EMPTY_CELL = "            ";
+    private String originalData;
 
-//set cell as 12 spaces
-    public void clearCell (char row, int col){
-         cell[row][col] = emptyCell;
-
-
+    public Cell() {
+        originalData = EMPTY_CELL_VALUE;
     }
 
-    }
+    // TODO: create a to spreadsheet method that returns the 12 spaces
+
+    // TODO: create a toString method that returns a string to print as the individual cell
+
 }
