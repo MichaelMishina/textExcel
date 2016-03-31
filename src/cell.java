@@ -12,8 +12,11 @@ public class Cell {
         originalData = EMPTY_CELL_VALUE;
     }
 
-    // TODO: create a to spreadsheet method that returns the 12 spaces
+    public String initialToSpreadsheet(){
+        return EMPTY_CELL;
+    }
 
-    // TODO: create a toString method that returns a string to print as the individual cell
-
+    public String initialCellValue(){
+        return EMPTY_CELL_VALUE;
+    }
 }
