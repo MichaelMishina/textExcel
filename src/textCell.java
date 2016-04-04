@@ -4,5 +4,8 @@
 
 public class TextCell extends Cell {
 
+    public String text(){
 
+
+    }
 }
