@@ -20,10 +20,10 @@ public class SpreadSheet {
 
     public SpreadSheet(){
         spreadSheetCells = new Cell[ROW][COL];
-        clearSheeet();
+        clearSheet();
     }
 
-    public void clearSheeet()
+    public void clearSheet()
     {
         for (int row = 0; row < ROW; row++) {
             for (int col = 0; col < COL; col++) {
@@ -37,6 +37,7 @@ public class SpreadSheet {
         while(!finisher) {
             System.out.println("Enter a command.");
             String input1 = commandScanner.nextLine().toUpperCase();
+            char char1 = input1.charAt(0);
             if ((input1.toLowerCase().contains("print"))) {
                 System.out.println(HEADER);
                 System.out.println(SEPARATOR);
@@ -56,12 +57,16 @@ public class SpreadSheet {
             } else if ((input1.toLowerCase().contains("exit"))) {
                 System.out.println("Process: end");
                 finisher = true;
-            }else if((input1.charAt(0) >= 'A') && (input1.charAt(0) <= 'G')){
-
+            }else if(((int)char1 - (int)'A' >= 0 && (int)char1 - (int)'A' <= 6) && (Integer.parseInt(input1.substring(1)) >= 1 && (Integer.parseInt(input1.substring(1))) <= 10)) {
+                getCell(char1,Integer.parseInt(input1.substring(1)));
             }
-               // Cell.
+
         }
 
+    }
+
+    public Cell getCell(char col, int row){
+        return(spreadSheetCells[row][col]);
     }
 
 
