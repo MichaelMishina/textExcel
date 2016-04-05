@@ -5,10 +5,12 @@
 public class NumberCell extends Cell{
     private double number;
 
+
     public NumberCell(String originalData) {
         super(originalData);
 
-        this.number = originalData;
+
+        this.number = Double.parseDouble(originalData);
 
     }
 

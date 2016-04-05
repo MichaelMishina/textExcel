@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class SpreadSheet {
 
     //Constants
-    private static final String HEADER = "            |      A      |      B      |      C      |      D      |      E      |     F      |      G      |";
-    private static final String SEPARATOR = "------------+-------------+-------------+-------------+-------------+-------------+------------+-------------+";
+    private static final String HEADER = "            |      A     |      B     |      C     |      D     |      E     |     F      |      G     |";
+    private static final String SEPARATOR = "\n------------+------------+------------+------------+------------+------------+------------+------------+\n";
     private static final int ROW = 10;
     private static final int COL = 7;
     private static final List[] LETTER_RANGE = new List[ROW];
@@ -32,6 +32,29 @@ public class SpreadSheet {
         }
     }
 
+    public String printSheet() {
+        String out = HEADER + SEPARATOR;
+
+        for (int row = 0; row < ROW; row++) {
+            if (row < (ROW-1)) {
+                out += ("     " + (row + 1) + "      |");
+            } else {
+                out += ("     " + (row + 1) + "     |");
+
+            }
+
+
+            for (int col = 0; col < COL; col++) {
+
+                out += spreadSheetCells[row][col].toSpreadsheet();
+                out += "|";
+            }
+            out += (SEPARATOR);
+        }
+
+        return out;
+    }
+
     public void commandInput(Scanner commandScanner){
         System.out.print("Welcome. ");
         while(!finisher) {
@@ -39,20 +62,7 @@ public class SpreadSheet {
             String input1 = commandScanner.nextLine().toUpperCase();
             char char1 = input1.charAt(0);
             if ((input1.toLowerCase().contains("print"))) {
-                System.out.println(HEADER);
-                System.out.println(SEPARATOR);
-                for(int i = 0;i <= ROW;i++) {
-                    if (i > 9) {
-                        System.out.println("    " + i + "      |             |             |             |             |             |            |             |");
-                        System.out.println(SEPARATOR);
-
-                    } else {
-                        System.out.println("     " + i + "      |             |             |             |             |             |            |             |");
-                        System.out.println(SEPARATOR);
-
-                    }
-                }
-
+               System.out.println(printSheet() );
 
             } else if ((input1.toLowerCase().contains("exit"))) {
                 System.out.println("Process: end");

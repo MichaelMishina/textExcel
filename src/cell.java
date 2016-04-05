@@ -16,12 +16,12 @@ public class Cell {
         originalData = EMPTY_CELL_VALUE;
     }
 
-    public String initialToSpreadsheet(){
+    public String toSpreadsheet(){
         return EMPTY_CELL;
     }
 
-    public String initialCellValue(){
-        return EMPTY_CELL_VALUE;
+    public String getCellValue(){
+        return originalData;
     }
 
 
