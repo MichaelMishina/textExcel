@@ -6,7 +6,11 @@ public class Cell {
 
     private static final String EMPTY_CELL_VALUE = "<empty>";
     private static final String EMPTY_CELL = "            ";
-    private String originalData;
+    protected String originalData;
+
+    public Cell(String originalData){
+        this.originalData = originalData;
+    }
 
     public Cell() {
         originalData = EMPTY_CELL_VALUE;
@@ -20,5 +24,5 @@ public class Cell {
         return EMPTY_CELL_VALUE;
     }
 
-    
+
 }

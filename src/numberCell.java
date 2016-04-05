@@ -3,9 +3,14 @@
  */
 
 public class NumberCell extends Cell{
+    private double number;
 
-    public int number() {
+    public NumberCell(String originalData) {
+        super(originalData);
 
+        this.number = originalData;
 
     }
+
+
 }
