@@ -4,7 +4,7 @@
 
 public class NumberCell extends Cell{
 
-    public int number() {
+    public NumberCell() {
 
 
     }
