@@ -8,9 +8,9 @@ public class SpreadSheet {
     //Constants
     private static final String HEADER = "            |      A     |      B     |      C     |      D     |      E     |     F      |      G     |";
     private static final String SEPARATOR = "\n------------+------------+------------+------------+------------+------------+------------+------------+\n";
-    private static final int ROW = 10;
-    private static final int COL = 7;
-    private static final List[] LETTER_RANGE = new List[ROW];
+    private static final int ROWCOUNT = 10;
+    private static final int COLCOUNT = 7;
+    private static final List[] LETTER_RANGE = new List[ROWCOUNT];
     int[] numberRange = new int[10];
 
     //Instance variables
@@ -19,14 +19,14 @@ public class SpreadSheet {
     public boolean finisher = false;
 
     public SpreadSheet(){
-        spreadSheetCells = new Cell[ROW][COL];
+        spreadSheetCells = new Cell[ROWCOUNT][COLCOUNT];
         clearSheet();
     }
 
     public void clearSheet()
     {
-        for (int row = 0; row < ROW; row++) {
-            for (int col = 0; col < COL; col++) {
+        for (int row = 0; row < ROWCOUNT; row++) {
+            for (int col = 0; col < COLCOUNT; col++) {
                 spreadSheetCells[row][col] = new Cell();
             }
         }
@@ -35,8 +35,8 @@ public class SpreadSheet {
     public String printSheet() {
         String out = HEADER + SEPARATOR;
 
-        for (int row = 0; row < ROW; row++) {
-            if (row < (ROW-1)) {
+        for (int row = 0; row < ROWCOUNT; row++) {
+            if (row < (ROWCOUNT -1)) {
                 out += ("     " + (row + 1) + "      |");
             } else {
                 out += ("     " + (row + 1) + "     |");
@@ -44,7 +44,7 @@ public class SpreadSheet {
             }
 
 
-            for (int col = 0; col < COL; col++) {
+            for (int col = 0; col < COLCOUNT; col++) {
 
                 out += spreadSheetCells[row][col].toSpreadsheet();
                 out += "|";
@@ -60,15 +60,16 @@ public class SpreadSheet {
         while(!finisher) {
             System.out.println("Enter a command.");
             String input1 = commandScanner.nextLine().toUpperCase();
-            char char1 = input1.charAt(0);
+            int char1 = (int)input1.charAt(0) - (int)'A';
             if ((input1.toLowerCase().contains("print"))) {
                System.out.println(printSheet() );
 
             } else if ((input1.toLowerCase().contains("exit"))) {
                 System.out.println("Process: end");
                 finisher = true;
-            }else if(((int)char1 - (int)'A' >= 0 && (int)char1 - (int)'A' <= 6) && (Integer.parseInt(input1.substring(1)) >= 1 && (Integer.parseInt(input1.substring(1))) <= 10)) {
-                getCell(char1,Integer.parseInt(input1.substring(1)));
+            }else if((char1 >= 0 && char1 <= (COLCOUNT - 1) ) && (Integer.parseInt(input1.substring(1) ) >= 1 &&
+                    (Integer.parseInt(input1.substring(1) ) ) <= ROWCOUNT) ) {
+                System.out.println(spreadSheetCells[char1][Integer.parseInt(input1.substring(1))]);
             }
 
         }

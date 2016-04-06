@@ -20,6 +20,8 @@ public class Cell {
         return EMPTY_CELL;
     }
 
+    public String toString() { return originalData; }
+
     public String getCellValue(){
         return originalData;
     }
