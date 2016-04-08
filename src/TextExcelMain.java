@@ -24,6 +24,7 @@ public class TextExcelMain {
 
     public static boolean commandInput(String input, SpreadSheet sheet){
             boolean finisher = false;
+                while(!finisher)
 
 
             if ((input.toLowerCase().contains("print"))) {
