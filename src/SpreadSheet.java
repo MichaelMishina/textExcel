@@ -67,8 +67,8 @@ public class SpreadSheet {
             } else if ((input1.toLowerCase().contains("exit"))) {
                 System.out.println("Process: end");
                 finisher = true;
-            }else if((char1 >= 0 && char1 <= (COLCOUNT - 1) ) && (Integer.parseInt(input1.substring(1) ) >= 1 &&
-                    (Integer.parseInt(input1.substring(1) ) ) <= ROWCOUNT) ) {
+            }else if((char1 >= 0 && char1 < COLCOUNT ) && ( (Integer.parseInt(input1.substring(1) ) - 1) >= 1 &&
+                    (Integer.parseInt(input1.substring(1) ) ) < ROWCOUNT) ) {
                 System.out.println(spreadSheetCells[char1][Integer.parseInt(input1.substring(1))]);
             }
 
