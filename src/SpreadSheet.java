@@ -55,7 +55,26 @@ public class SpreadSheet {
         return out;
     }
 
+<<<<<<< HEAD
     public String printCellValue(String input) {
+=======
+    public void commandInput(Scanner commandScanner){
+        System.out.print("Welcome. ");
+        while(!finisher) {
+            System.out.println("Enter a command.");
+            String input1 = commandScanner.nextLine().toUpperCase();
+            int char1 = (int)input1.charAt(0) - (int)'A';
+            if ((input1.toLowerCase().contains("print"))) {
+               System.out.println(printSheet() );
+
+            } else if ((input1.toLowerCase().contains("exit"))) {
+                System.out.println("Process: end");
+                finisher = true;
+            }else if((char1 >= 0 && char1 < COLCOUNT ) && ( (Integer.parseInt(input1.substring(1) ) - 1) >= 1 &&
+                    (Integer.parseInt(input1.substring(1) ) ) < ROWCOUNT) ) {
+                System.out.println(spreadSheetCells[char1][Integer.parseInt(input1.substring(1))]);
+            }
+>>>>>>> origin/master
 
         String cellValue = "Invalid input";
         int col = (int) input.charAt(0) - (int) 'A';
