@@ -69,6 +69,8 @@ public class SpreadSheet {
         return cellValue;
     }
 
+    public String setCellValue(String input)
+
     public Cell getCell(char col, int row){
         return(spreadSheetCells[row][col]);
     }
