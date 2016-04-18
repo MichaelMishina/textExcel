@@ -24,7 +24,6 @@ public class TextExcelMain {
 
     public static boolean commandInput(String input, SpreadSheet sheet){
             boolean finisher = false;
-                while(!finisher)
 
 
             if ((input.toLowerCase().contains("print"))) {
@@ -33,7 +32,9 @@ public class TextExcelMain {
             } else if ((input.toLowerCase().contains("exit"))) {
                 System.out.println("Process: end");
                 finisher = true;
-            }else {
+            }else if ((input.contains( " = "))){
+                System.out.println(sheet.setCellValue(input));
+            } else {
                 System.out.println(sheet.printCellValue(input));
             }
 

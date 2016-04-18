@@ -73,7 +73,8 @@ public class SpreadSheet {
         int col = (int) input.charAt(0) - (int) 'A';
         int row = (Integer.parseInt(input.substring(1) ) - 1);
 
-        return("Incomplete");
+        spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf(" = ") ) );
+        return(input);
     }
 
     public Cell getCell(char col, int row){
