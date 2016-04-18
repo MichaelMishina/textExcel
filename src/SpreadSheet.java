@@ -70,7 +70,10 @@ public class SpreadSheet {
     }
 
     public String setCellValue(String input){
-        return("incomplete");
+        int col = (int) input.charAt(0) - (int) 'A';
+        int row = (Integer.parseInt(input.substring(1) ) - 1);
+
+        return("Incomplete");
     }
 
     public Cell getCell(char col, int row){
