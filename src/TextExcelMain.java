@@ -33,7 +33,7 @@ public class TextExcelMain {
                 System.out.println("Process: end");
                 finisher = true;
             }else if ((input.contains( " = "))){
-                System.out.println(sheet.setCellValue(input));
+                sheet.setCellValue(input);
             } else {
                 System.out.println(sheet.printCellValue(input));
             }

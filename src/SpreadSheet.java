@@ -59,7 +59,7 @@ public class SpreadSheet {
     public String printCellValue(String input) {
         String cellValue = "Invalid input";
         int col = (int) input.charAt(0) - (int) 'A';
-        int row = (Integer.parseInt(input.substring(1) ) - 1);
+        int row = (Integer.parseInt(input.substring(1,2) ) - 1);
 
         if ( ( (col >= 0) && (col < COLCOUNT) ) &&
                 ( (row >= 0) && (row < ROWCOUNT) ) ) {
@@ -71,9 +71,9 @@ public class SpreadSheet {
 
     public String setCellValue(String input){
         int col = (int) input.charAt(0) - (int) 'A';
-        int row = (Integer.parseInt(input.substring(1) ) - 1);
+        int row = (Integer.parseInt(input.substring(1,2) ) - 1);
 
-        spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf(" = ") ) );
+        spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf("=") + 1 ).trim() );
         return(input);
     }
 
