@@ -72,8 +72,18 @@ public class SpreadSheet {
     public String setCellValue(String input){
         int col = (int) input.charAt(0) - (int) 'A';
         int row = (Integer.parseInt(input.substring(1,2) ) - 1);
+        char quote = (char)input.indexOf(("=") + 2);
 
-        spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf("=") + 1 ).trim() );
+        if( (char) input.indexOf(("=") + 2) == quote) {
+            spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf("=") + 1).trim());
+            System.out.println("Confirmed");
+        } else if(input.contains("+")||input.contains("-")||input.contains("*")||input.contains("/")){
+            //Set up after the FormulaCell class is complete.
+            //System.out.println("Confirmed");
+        } else {
+            spreadSheetCells[row][col] = new NumberCell(input.substring(input.indexOf("=") + 1).trim());
+            System.out.println("Confirmed");
+        }
         return(input);
     }
 
