@@ -3,6 +3,46 @@
  */
 import java.util.Scanner;
 
+/* Test Plan:
+* print
+* exit
+* A1
+* A2 = 12345
+* A2
+* A3 = "abcdefg"
+* A3
+* A4 = ()
+* A4
+* clear A1
+* clear
+* A5 = (1.6 + 1.4)
+* A5
+* A6 = (1.5 - 1.1)
+* A6
+* A7 = (2.3 * 2.9)
+* A7
+* A8 = (4.1 / 2.5)
+* A8
+* A9 = (A5 + A7)
+* A9
+* B1 = 1.7
+* B2 = 2.9
+* B3 = 3.5
+* B4 = 4.4
+* B5 = (avg B1 - B4)
+* B5
+* B6 = (sum B1 - B4)
+* B6
+* clear A1 - B6
+* print
+* A1 = 1.5
+* A2 = 1.4
+* A3 = 1.3
+* A4 = 1.2
+* A5 = 1.1
+* sorta A1 - A5
+* sortd A1 - A5*/
+
 public class TextExcelMain {
 
     public static void main(String[]args){
