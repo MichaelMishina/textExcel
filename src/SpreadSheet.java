@@ -11,6 +11,7 @@ public class SpreadSheet {
     private static final int ROWCOUNT = 10;
     private static final int COLCOUNT = 7;
     private static final List[] LETTER_RANGE = new List[ROWCOUNT];
+    private static final int CELL_SIZE = 12;
     int[] numberRange = new int[10];
 
     //Instance variables
@@ -43,7 +44,6 @@ public class SpreadSheet {
 
             }
 
-
             for (int col = 0; col < COLCOUNT; col++) {
 
                 out += spreadSheetCells[row][col].toSpreadsheet();
@@ -53,6 +53,15 @@ public class SpreadSheet {
         }
 
         return out;
+    }
+
+    public void clearCellValue(String input) {
+        int col = (int) input.charAt(0) - (int) 'A';
+        int row = (Integer.parseInt(input.substring(1,2) ) - 1);
+
+        spreadSheetCells[row][col] = new Cell();
+
+
     }
 
 

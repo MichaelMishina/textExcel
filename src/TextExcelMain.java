@@ -53,7 +53,7 @@ public class TextExcelMain {
         System.out.print("Welcome. ");
         while(!finisher) {
             System.out.println("Enter a command.");
-            String input = commandScanner.nextLine().toUpperCase();
+            String input = commandScanner.nextLine();
 
             finisher = commandInput(input, newSheet);
         }
@@ -74,9 +74,20 @@ public class TextExcelMain {
                 finisher = true;
             }else if ((input.contains( " = "))){
                 sheet.setCellValue(input);
+            } else if ((input.toLowerCase().contains("clear"))) {
+                String[] clearArray = input.split(" ");
+
+                if (clearArray.length == 1){
+                    sheet.clearSheet();
+                } else if (clearArray.length == 2){
+                    sheet.clearCellValue(clearArray[1]);
+                } else {
+
+                }
             } else {
-                System.out.println(sheet.printCellValue(input));
-            }
+                    System.out.println(sheet.printCellValue(input));
+                }
+
 
         return finisher;
 

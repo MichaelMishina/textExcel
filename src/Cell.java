@@ -7,12 +7,13 @@ public class Cell {
     private static final String EMPTY_CELL_VALUE = "<empty>";
     private static final String EMPTY_CELL = "            ";
     protected String originalData;
+    protected String originalCell;
 
     public Cell(String originalData){
         this.originalData = originalData;
     }
 
-    public Cell() {
+    public Cell(){
         originalData = EMPTY_CELL_VALUE;
     }
 
