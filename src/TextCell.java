@@ -11,4 +11,6 @@ public class TextCell extends Cell {
 
         String cell;
     }
+
+
 }
