@@ -6,11 +6,15 @@ public class TextCell extends Cell {
 
 
     public TextCell(String originalData){
-        super(originalData);
+         super(originalData);}
+
+        public String toSpreadSheet() {
+            if(originalData.length() > 12){
+                //incomplete
+        }
 
 
         String cell;
-    }
-
-
+    return("incomplete");
+        }
 }
