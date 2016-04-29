@@ -9,12 +9,7 @@ public class TextCell extends Cell {
          super(originalData);}
 
         public String toSpreadSheet() {
-            if(originalData.length() > 12){
-                //incomplete
-        }
 
-
-        String cell;
-    return("incomplete");
+    return(originalData);
         }
 }
