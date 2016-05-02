@@ -7,7 +7,6 @@ public class Cell {
     private static final String EMPTY_CELL_VALUE = "<empty>";
     private static final String EMPTY_CELL = "            ";
     protected String originalData;
-    protected String originalCell;
 
     public Cell(String originalData){
         this.originalData = originalData;
@@ -27,7 +26,7 @@ public class Cell {
         return originalData;
     }
 
-    public String trunkate(String originalData) {
+    public String trunkate() {
         if(this.originalData.length() > 12){
             return(this.originalData.substring(this.originalData.length() - 1) + ">");
         } else {

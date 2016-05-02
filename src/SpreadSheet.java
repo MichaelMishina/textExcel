@@ -8,8 +8,8 @@ public class SpreadSheet {
     //Constants
     private static final String HEADER = "            |      A     |      B     |      C     |      D     |      E     |     F      |      G     |";
     private static final String SEPARATOR = "\n------------+------------+------------+------------+------------+------------+------------+------------+\n";
-    private static final int ROWCOUNT = 10;
-    private static final int COLCOUNT = 7;
+    private static final int ROWCOUNT = 10; //Changing ROWCOUNT could break the code
+    private static final int COLCOUNT = 7; //Changing COLCOUNT could also break the code
     private static final List[] LETTER_RANGE = new List[ROWCOUNT];
     private static final int CELL_SIZE = 12;
     int[] numberRange = new int[10];
@@ -37,6 +37,8 @@ public class SpreadSheet {
         String out = HEADER + SEPARATOR;
 
         for (int row = 0; row < ROWCOUNT; row++) {
+            //This is to name the specific rows. The IF statement is to make sure to add an additional character to the
+            //row label if the row is a number greater than 9 without messing up the spacing of the whole table.
             if (row < (ROWCOUNT -1)) {
                 out += ("     " + (row + 1) + "      |");
             } else {
@@ -60,7 +62,8 @@ public class SpreadSheet {
         int row = (Integer.parseInt(input.substring(1,2) ) - 1);
 
         spreadSheetCells[row][col] = new Cell();
-
+        //Any method with "Confirmed" at the end doesn't actually return anything, so the "Confirmed" is to confirm success.
+        System.out.println("Confirmed");
 
     }
 
