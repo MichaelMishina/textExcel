@@ -8,5 +8,8 @@ public class TextCell extends Cell {
     public TextCell(String originalData){
          super(originalData);}
 
-        public String toSpreadsheet() { return(originalData); }
+        public String toSpreadsheet() {
+
+            return(trunkate(originalData) );
+        }
 }

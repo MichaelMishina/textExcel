@@ -26,12 +26,42 @@ public class Cell {
         return originalData;
     }
 
-    public String trunkate() {
-        if(this.originalData.length() > 12){
-            return(this.originalData.substring(this.originalData.length() - 1) + ">");
-        } else {
-            return(this.originalData);
+    public String trunkate(String data) {
+
+        String output = "";
+
+        if (data.length() > SpreadSheet.CELL_SIZE) {
+
+            output = (data.substring(0 , SpreadSheet.CELL_SIZE - 1) + ">");
+
+        } else if (data.length() <= SpreadSheet.CELL_SIZE) {
+
+            int numSpaces = (SpreadSheet.CELL_SIZE - data.length());
+
+            if ((numSpaces) % 2 == 0) {
+                for (int i = 0; i < (numSpaces / 2); i++) {
+                    output += " ";
+                }
+
+                output += data;
+
+                for (int i = 0; i < (numSpaces / 2); i++) {
+                    output += " ";
+                }
+            } else {
+                for (int i = 0; i < ((numSpaces / 2) + 1); i++) {
+                    output += " ";
+                }
+
+                output += data;
+
+                for (int i = 0; i < (numSpaces / 2); i++) {
+                    output += " ";
+                }
+            }
         }
+
+    return(output);
     }
 
 

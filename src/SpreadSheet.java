@@ -11,7 +11,8 @@ public class SpreadSheet {
     private static final int ROWCOUNT = 10; //Changing ROWCOUNT could break the code
     private static final int COLCOUNT = 7; //Changing COLCOUNT could also break the code
     private static final List[] LETTER_RANGE = new List[ROWCOUNT];
-    private static final int CELL_SIZE = 12;
+    public static final int CELL_SIZE = 12;
+
     int[] numberRange = new int[10];
 
     //Instance variables
@@ -48,38 +49,8 @@ public class SpreadSheet {
 
             for (int col = 0; col < COLCOUNT; col++) {
                 // Got centering working
-                int temp;
-                if (spreadSheetCells[row][col].toSpreadsheet().length() < CELL_SIZE) {
-                    temp = (CELL_SIZE - spreadSheetCells[row][col].toSpreadsheet().length());
-
-                    if ((temp) % 2 == 0) {
-                        for (int i = 0; i < (temp / 2); i++){
-                            out += " ";
-                        }
-
-                        out += spreadSheetCells[row][col].toSpreadsheet();
-
-                        for (int i = 0; i < (temp / 2); i++){
-                        out += " ";
-                        }
-                    } else {
-                        for (int i = 0; i < ((temp / 2) + 1); i++){
-                            out += " ";
-                        }
-
-                        out += spreadSheetCells[row][col].toSpreadsheet();
-
-                        for (int i = 0; i < (temp / 2); i++){
-                            out += " ";
-                        }
-                    }
-
-                    out += "|";
-                } else {
-                    // TODO: 5/3/2016 put truncating here
-                    out += spreadSheetCells[row][col].toSpreadsheet();
-                    out += "|";
-                }
+                out += spreadSheetCells[row][col].toSpreadsheet();
+                out += "|";
             }
             out += (SEPARATOR);
         }
