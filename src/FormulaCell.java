@@ -3,9 +3,16 @@
  */
 
 public class FormulaCell extends Cell {
+    public String formula;
+
+    public FormulaCell(String originalData) {
+        super(originalData);
+    }
 
 
-    //public formulaCell(String originalData){
+
+
+
 
     }
 

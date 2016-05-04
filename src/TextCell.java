@@ -10,6 +10,6 @@ public class TextCell extends Cell {
 
         public String toSpreadsheet() {
 
-            return(trunkate(originalData) );
+            return(trunkate(originalData.substring(1, originalData.length() - 1 ) ) );
         }
 }

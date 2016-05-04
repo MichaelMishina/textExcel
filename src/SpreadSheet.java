@@ -32,6 +32,7 @@ public class SpreadSheet {
                 spreadSheetCells[row][col] = new Cell();
             }
         }
+        System.out.println("Confirmed");
     }
 
     public String printSheet() {
@@ -77,6 +78,7 @@ public class SpreadSheet {
         if ( ( (col >= 0) && (col < COLCOUNT) ) &&
                 ( (row >= 0) && (row < ROWCOUNT) ) ) {
             cellValue = (input + " = " + spreadSheetCells[row][col]);
+
         }
 
         return cellValue;
@@ -87,12 +89,12 @@ public class SpreadSheet {
         int row = (Integer.parseInt(input.substring(1,2) ) - 1);
         char quote = (char)input.indexOf(("=") + 2);
 
-        if( (char) input.indexOf(("=") + 2) == quote) {
+        if( input.contains("\"")) {
             spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf("=") + 1).trim());
             System.out.println("Confirmed");
-        } else if(input.contains("+")||input.contains("-")||input.contains("*")||input.contains("/")){
-            //Set up after the FormulaCell class is complete.
-            //System.out.println("Confirmed");
+        } else if(input.contains("( ") && input.contains(" )")){
+            spreadSheetCells[row][col] = new FormulaCell(input.substring(input.indexOf("=") + 1).trim());
+            System.out.println("Confirmed");
         } else {
             spreadSheetCells[row][col] = new NumberCell(input.substring(input.indexOf("=") + 1).trim());
             System.out.println("Confirmed");

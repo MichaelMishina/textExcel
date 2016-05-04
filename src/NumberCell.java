@@ -3,16 +3,20 @@
  */
 
 public class NumberCell extends Cell{
-    private double number;
-
+    private double numData;
 
     public NumberCell(String originalData) {
         super(originalData);
-
-
-        this.number = Double.parseDouble(originalData);
-
+        numData = Double.parseDouble(originalData);
     }
 
+    @Override
+    public String toSpreadsheet() {
+        return(trunkate(numData + ""));
+    }
+
+    public double getNumData(){
+        return(numData);
+    }
 
 }
