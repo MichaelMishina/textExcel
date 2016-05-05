@@ -59,7 +59,7 @@ public class SpreadSheet {
         return out;
     }
 
-    public void clearCellValue(String input) {
+    public void clearCellValue (String input) {
         int col = (int) input.charAt(0) - (int) 'A';
         int row = (Integer.parseInt(input.substring(1,2) ) - 1);
 
@@ -69,6 +69,12 @@ public class SpreadSheet {
 
     }
 
+    public void clearRange (String input) {
+        // clear a range of cells
+
+
+
+    }
 
     public String printCellValue(String input) {
         String cellValue = "Invalid input";

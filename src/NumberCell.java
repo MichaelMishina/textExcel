@@ -12,7 +12,7 @@ public class NumberCell extends Cell{
 
     @Override
     public String toSpreadsheet() {
-        return(trunkate(numData + ""));
+        return(truncate(numData + ""));
     }
 
     public double getNumData(){
