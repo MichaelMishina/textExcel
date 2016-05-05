@@ -1,3 +1,9 @@
+//CheckPoint 4
+A1 = ( 12 + 14 )
+A2 = ( 5 - 7 )
+A3 = ( 6 * 6 )
+A4 = ( 25 / 5 )
+
 // CheckPoint 3
 A1 = "hello"
 A2 = 123
@@ -15,14 +21,8 @@ A1 = "hello"
 print
 /* Test Plan:
 
-* A2 = 12345
-* A2
-* A3 = "abcdefg"
-* A3
-* A4 = ()
-* A4
-* clear A1
-* clear
+
+
 * A5 = (1.6 + 1.4 * 2.845 / 6.443)
 * A5
 * A6 = (1.5 - 1.1 + 4.829 * 7.66 - 1000)

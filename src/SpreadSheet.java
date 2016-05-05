@@ -32,7 +32,7 @@ public class SpreadSheet {
                 spreadSheetCells[row][col] = new Cell();
             }
         }
-        System.out.println("Confirmed");
+
     }
 
     public String printSheet() {
@@ -93,7 +93,7 @@ public class SpreadSheet {
             spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf("=") + 1).trim());
             System.out.println("Confirmed");
         } else if(input.contains("( ") && input.contains(" )")){
-            spreadSheetCells[row][col] = new FormulaCell(input.substring(input.indexOf("=") + 1).trim());
+            spreadSheetCells[row][col] = new FormulaCell(input.substring(input.indexOf("(") + 1, input.indexOf(")")).trim());
             System.out.println("Confirmed");
         } else {
             spreadSheetCells[row][col] = new NumberCell(input.substring(input.indexOf("=") + 1).trim());

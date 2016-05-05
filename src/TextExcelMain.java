@@ -41,11 +41,13 @@ public class TextExcelMain {
 
                 if (clearArray.length == 1) {
                     sheet.clearSheet();
+                    System.out.println("Confirmed");
                 } else if (clearArray.length == 2) {
                     sheet.clearCellValue(clearArray[1]);
                 } else {
                     return (true);
                 }
+
 
 
 

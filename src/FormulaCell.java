@@ -10,18 +10,22 @@ public class FormulaCell extends Cell {
         formula = originalData;
     }
 
-    public String toSpreadSheet(){
+    public String toSpreadsheet() {
         String result;
-        if ( formula.contains(" + ") ) {
-            result = ( formula.substring(0, formula.indexOf(" + ") ) + formula.substring(formula.indexOf(" + "), formula.indexOf(" ) ") ) );
-        } else if ( formula.contains(" - ") ) {
-            result = ( formula.substring(0, formula.indexOf(" - ") ) + formula.substring(formula.indexOf(" - "), formula.indexOf( " ) ") ) );
-        } else if (formula.contains(" * ") ){
-            result = ( formula.substring(0, formula.indexOf(" * ") ) + formula.substring(formula.indexOf(" * "), formula.indexOf( " ) ") ) );
-        } else {
-            result = ( formula.substring(0, formula.indexOf(" / ") ) + formula.substring(formula.indexOf(" / "), formula.indexOf( " ) ") ) );
+        String[] split = formula.split(" ");
+        for (int k = 2; k < split.length; k += 2) {
+            if (split[k - 1].contains(" + ")) {
+                split[0] = (Double.parseDouble(split[0]) + Double.parseDouble(split[k]) + "");
+            } else if (formula.contains(" - ")) {
+                split[0] = (Double.parseDouble(split[0]) - Double.parseDouble(split[k]) + "");
+            } else if (formula.contains(" * ")) {
+                split[0] = (Double.parseDouble(split[0]) * Double.parseDouble(split[k]) + "");
+            } else {
+                split[0] = (Double.parseDouble(split[0]) / Double.parseDouble(split[k]) + "");
+            }
+
         }
-        return (trunkate(result));
+        return (trunkate(split[0]));
     }
 
 
