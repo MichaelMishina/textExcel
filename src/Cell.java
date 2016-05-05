@@ -26,7 +26,7 @@ public class Cell {
         return originalData;
     }
 
-    public String trunkate(String data) {
+    public String truncate(String data) {
 
         String output = "";
 

@@ -29,22 +29,35 @@ public class TextExcelMain {
 
 
             if ((input.toLowerCase().contains("print"))) {
+
                 System.out.println(sheet.printSheet() );
 
             } else if ((input.toLowerCase().contains("exit"))) {
+
                 System.out.println("Process: end");
+
                 finisher = true;
+
             }else if ((input.contains( " = "))){
+
                 sheet.setCellValue(input);
+
             } else if ((input.toLowerCase().contains("clear"))) {
+
                 String[] clearArray = input.split(" ");
 
                 if (clearArray.length == 1) {
+
                     sheet.clearSheet();
+
                 } else if (clearArray.length == 2) {
+
                     sheet.clearCellValue(clearArray[1]);
+
                 } else {
-                    return (true);
+
+                    sheet.clearRange();
+
                 }
 
 
