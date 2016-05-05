@@ -11,21 +11,22 @@ public class FormulaCell extends Cell {
     }
 
     public String toSpreadsheet() {
-        String result;
         String[] split = formula.split(" ");
-        for (int k = 2; k < split.length; k += 2) {
-            if (split[k - 1].contains(" + ")) {
-                split[0] = (Double.parseDouble(split[0]) + Double.parseDouble(split[k]) + "");
-            } else if (formula.contains(" - ")) {
-                split[0] = (Double.parseDouble(split[0]) - Double.parseDouble(split[k]) + "");
-            } else if (formula.contains(" * ")) {
-                split[0] = (Double.parseDouble(split[0]) * Double.parseDouble(split[k]) + "");
-            } else {
-                split[0] = (Double.parseDouble(split[0]) / Double.parseDouble(split[k]) + "");
+        //split[2] is used b/c it skips over the first parenthesis
+        double result = Double.parseDouble(split[2]);
+        for (int k = 3; k < split.length - 1; k++) {
+            if (split[k].contains("+")) {
+                result += (Double.parseDouble(split[k + 1]));
+            } else if (split[k].contains("-")) {
+                result -= (Double.parseDouble(split[k + 1]));
+            } else if (split[k].contains("*")) {
+                result *= (Double.parseDouble(split[k + 1]));
+            } else if (split[k].contains("/")){
+                result = (Double.parseDouble(split[k + 1]));
             }
 
         }
-        return (trunkate(split[0]));
+        return (truncate(result + ""));
     }
 
 
