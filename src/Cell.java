@@ -38,26 +38,22 @@ public class Cell {
 
             int numSpaces = (SpreadSheet.CELL_SIZE - data.length());
 
-            if ((numSpaces) % 2 == 0) {
-                for (int i = 0; i < (numSpaces / 2); i++) {
-                    output += " ";
-                }
+            if ((numSpaces) % 2 != 0) {
 
-                output += data;
-
-                for (int i = 0; i < (numSpaces / 2); i++) {
-                    output += " ";
-                }
-            } else {
                 for (int i = 0; i < ((numSpaces / 2) + 1); i++) {
                     output += " ";
                 }
 
-                output += data;
-
+            } else {
                 for (int i = 0; i < (numSpaces / 2); i++) {
                     output += " ";
                 }
+
+            }
+            output += data;
+
+            for (int i = 0; i < (numSpaces / 2); i++) {
+                output += " ";
             }
         }
 

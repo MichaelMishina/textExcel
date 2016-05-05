@@ -7,6 +7,21 @@ public class FormulaCell extends Cell {
 
     public FormulaCell(String originalData) {
         super(originalData);
+        formula = originalData;
+    }
+
+    public String toSpreadSheet(){
+        String result;
+        if ( formula.contains(" + ") ) {
+            result = ( formula.substring(0, formula.indexOf(" + ") ) + formula.substring(formula.indexOf(" + "), formula.indexOf(" ) ") ) );
+        } else if ( formula.contains(" - ") ) {
+            result = ( formula.substring(0, formula.indexOf(" - ") ) + formula.substring(formula.indexOf(" - "), formula.indexOf( " ) ") ) );
+        } else if (formula.contains(" * ") ){
+            result = ( formula.substring(0, formula.indexOf(" * ") ) + formula.substring(formula.indexOf(" * "), formula.indexOf( " ) ") ) );
+        } else {
+            result = ( formula.substring(0, formula.indexOf(" / ") ) + formula.substring(formula.indexOf(" / "), formula.indexOf( " ) ") ) );
+        }
+        return (trunkate(result));
     }
 
 
