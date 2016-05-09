@@ -92,14 +92,17 @@ public class SpreadSheet {
 
     public String setCellValue(String input){
         int col = (int) input.charAt(0) - (int) 'A';
-        int row = (Integer.parseInt(input.substring(1,2) ) - 1);
-        char quote = (char)input.indexOf(("=") + 2);
+        int row = (Integer.parseInt(input.substring( 1,2 ) ) - 1);
+        char quote = (char)input.indexOf( ( "=" ) + 2 );
 
-        if( input.contains("\"")) {
-            spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf("= ") + 1).trim());
+        if( input.contains("\"") ) {
+
+            spreadSheetCells[row][col] = new TextCell(input.substring( input.indexOf( "=" ) + 1 ).trim() );
+
             System.out.println("Confirmed");
-        } else if(input.contains("( ") && input.contains(" )")){
-            spreadSheetCells[row][col] = new FormulaCell(input.substring(input.indexOf("= ") + 1));
+
+        } else if(input.contains("( ") && input.contains( " )" ) ){
+            spreadSheetCells[row][col] = new FormulaCell(input.substring( input.indexOf( "=" ) + 1 ).trim() );
             System.out.println("Confirmed");
         } else {
             spreadSheetCells[row][col] = new NumberCell(input.substring(input.indexOf("= ") + 1).trim());
@@ -111,19 +114,4 @@ public class SpreadSheet {
     public Cell getCell(char col, int row){
         return(spreadSheetCells[row][col]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

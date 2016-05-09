@@ -10,6 +10,7 @@ public class FormulaCell extends Cell {
         formula = originalData;
     }
 
+    //this is very wrong
     public String sum(){
         return("thing");
     }
@@ -21,8 +22,8 @@ public class FormulaCell extends Cell {
     public String toSpreadsheet() {
         String[] split = formula.split(" ");
         //split[2] is used b/c it skips over the first parenthesis
-        double result = Double.parseDouble(split[2]);
-        for (int k = 3; k < split.length - 1; k++) {
+        double result = Double.parseDouble(split[1]);
+        for (int k = 2; k < split.length - 1; k++) {
             if (split[k].contains("+")) {
                 result += (Double.parseDouble(split[k + 1]));
             } else if (split[k].contains("-")) {
