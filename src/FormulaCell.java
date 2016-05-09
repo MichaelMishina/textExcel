@@ -10,6 +10,14 @@ public class FormulaCell extends Cell {
         formula = originalData;
     }
 
+    public String sum(){
+        return("thing");
+    }
+
+
+
+
+
     public String toSpreadsheet() {
         String[] split = formula.split(" ");
         //split[2] is used b/c it skips over the first parenthesis
@@ -22,7 +30,7 @@ public class FormulaCell extends Cell {
             } else if (split[k].contains("*")) {
                 result *= (Double.parseDouble(split[k + 1]));
             } else if (split[k].contains("/")){
-                result = (Double.parseDouble(split[k + 1]));
+                result /= (Double.parseDouble(split[k + 1]));
             }
 
         }
