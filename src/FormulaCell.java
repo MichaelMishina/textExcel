@@ -11,11 +11,14 @@ public class FormulaCell extends Cell {
     }
 
     //this is very wrong
-    public String sum(){
-        return("thing");
+    public double sum(){
+        return( Math.random() * 101 );
     }
 
+    public double average (){
 
+        return (sum() / );
+    }
 
 
 

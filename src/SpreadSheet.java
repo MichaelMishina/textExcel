@@ -32,7 +32,6 @@ public class SpreadSheet {
                 spreadSheetCells[row][col] = new Cell();
             }
         }
-
     }
 
     public String printSheet() {
