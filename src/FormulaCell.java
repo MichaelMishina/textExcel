@@ -15,11 +15,14 @@ public class FormulaCell extends Cell {
         double endInt = 0;
         for (int k = startCol; k < endCol; k++) {
             for (int m = startRow; m < endRow; m++) {
-                if(usedSheet.getCell(k,m).equals("")){
-                    m++;
+                if(usedSheet.getCell(k,m) instanceof NumberCell){
+                    NumberCell tempCell = (NumberCell)( usedSheet.getCell(k,m));
+                    endInt += tempCell.getNumData();
+                } else if(usedSheet.getCell(k,m) instanceof FormulaCell){
+                    FormulaCell tempCell = (FormulaCell)( usedSheet.getCell(k,m));
+                    endInt += tempCell.solve();
                 } else {
-                    endInt += 1;
-                    //incomplete
+                    m++;
                 }
             }
         }
@@ -27,7 +30,24 @@ public class FormulaCell extends Cell {
     }
 
 
+    public double solve() {
+        String[] split = formula.split(" ");
+        //split[2] is used b/c it skips over the first parenthesis
+        double result = Double.parseDouble(split[2]);
+        for (int k = 3; k < split.length - 1; k++) {
+            if (split[k].contains("+")) {
+                result += (Double.parseDouble(split[k + 1]));
+            } else if (split[k].contains("-")) {
+                result -= (Double.parseDouble(split[k + 1]));
+            } else if (split[k].contains("*")) {
+                result *= (Double.parseDouble(split[k + 1]));
+            } else if (split[k].contains("/")){
+                result /= (Double.parseDouble(split[k + 1]));
+            }
 
+        }
+        return(result);
+    }
 
 
     public String toSpreadsheet() {
