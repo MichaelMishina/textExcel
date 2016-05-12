@@ -11,7 +11,7 @@ public class FormulaCell extends Cell {
         formula = originalData;
     }
 
-    public String sum(int startCol, int endCol, int startRow, int endRow ){
+    public double Sum(int startCol, int endCol, int startRow, int endRow ){
         double endInt = 0;
         for (int k = startCol; k < endCol; k++) {
             for (int m = startRow; m < endRow; m++) {
@@ -26,15 +26,19 @@ public class FormulaCell extends Cell {
                 }
             }
         }
-        return("incomplete");
+        return(endInt);
     }
 
 
     public double solve() {
         String[] split = formula.split(" ");
+        if (split[0].contains("sum")){
+            return (Sum( ((int) split[2].charAt(0) - (int)'A') , ((int) split[3].charAt(0) - (int)'A') , split[2].indexOf(1), split[3].indexOf(1)));
+        } else if (split[0].contains("avg"))
+            return ((Sum( ((int) split[2].charAt(0) - (int)'A') , ((int) split[3].charAt(0) - (int)'A') , split[2].indexOf(1), split[3].indexOf(1))) / );
         //split[2] is used b/c it skips over the first parenthesis
         double result = Double.parseDouble(split[2]);
-        for (int k = 3; k < split.length - 1; k++) {
+        for (int k = 0; k < split.length - 1; k++) {
             if (split[k].contains("+")) {
                 result += (Double.parseDouble(split[k + 1]));
             } else if (split[k].contains("-")) {
@@ -51,21 +55,7 @@ public class FormulaCell extends Cell {
 
 
     public String toSpreadsheet() {
-        String[] split = formula.split(" ");
-        //split[2] is used b/c it skips over the first parenthesis
-        double result = Double.parseDouble(split[2]);
-        for (int k = 3; k < split.length - 1; k++) {
-            if (split[k].contains("+")) {
-                result += (Double.parseDouble(split[k + 1]));
-            } else if (split[k].contains("-")) {
-                result -= (Double.parseDouble(split[k + 1]));
-            } else if (split[k].contains("*")) {
-                result *= (Double.parseDouble(split[k + 1]));
-            } else if (split[k].contains("/")){
-                result /= (Double.parseDouble(split[k + 1]));
-            }
-
-        }
+        double result = solve();
         return (truncate(result + ""));
     }
 
