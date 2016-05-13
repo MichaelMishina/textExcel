@@ -32,10 +32,14 @@ public class FormulaCell extends Cell {
 
     public double solve() {
         String[] split = formula.split(" ");
-        if (split[0].contains("sum")){
-            return (Sum( ((int) split[2].charAt(0) - (int)'A') , ((int) split[3].charAt(0) - (int)'A') , split[2].indexOf(1), split[3].indexOf(1)));
-        } else if (split[0].contains("avg"))
-            return ((Sum( ((int) split[2].charAt(0) - (int)'A') , ((int) split[3].charAt(0) - (int)'A') , split[2].indexOf(1), split[3].indexOf(1))) / );
+        int col1 = (int) split[2].charAt(0) - (int)'A';
+        int col2 = (int) split[3].charAt(0) - (int)'A';
+        int row1 = split[2].indexOf(1);
+        int row2 = split[3].indexOf(1);
+        if (split[1].contains("sum")){
+            return (Sum( col1, col2, row1, row2 ) );
+        } else if (split[1].contains("avg"))
+            return ( (Sum( col1, col2, row1, row2) ) / ((7 * (col2 - col1)) + (10 * row2 - row1)));
         //split[2] is used b/c it skips over the first parenthesis
         double result = Double.parseDouble(split[2]);
         for (int k = 0; k < split.length - 1; k++) {
