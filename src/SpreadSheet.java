@@ -101,7 +101,7 @@ public class SpreadSheet {
             System.out.println("Confirmed");
 
         } else if(input.contains("( ") && input.contains( " )" ) ){
-            spreadSheetCells[row][col] = new FormulaCell(input.substring( input.indexOf("= " ) + 1 ).trim() );
+            spreadSheetCells[row][col] = new FormulaCell(input.substring( input.indexOf("= " ) + 1 ).trim(),this );
             System.out.println("Confirmed");
         } else {
             spreadSheetCells[row][col] = new NumberCell(input.substring(input.indexOf("= ") + 1).trim());
