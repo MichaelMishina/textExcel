@@ -6,9 +6,10 @@ public class FormulaCell extends Cell {
     private String formula;
     private SpreadSheet usedSheet;
 
-    public FormulaCell(String originalData) {
+    public FormulaCell(String originalData, SpreadSheet formulaSheet) {
         super(originalData);
         formula = originalData;
+        usedSheet = formulaSheet;
     }
 
 
@@ -49,17 +50,17 @@ public class FormulaCell extends Cell {
         if (split[1].contains("sum")){
 
             int col1 = convertToNum(split[2].charAt(0));
-            int col2 = convertToNum(split[3].charAt(0));
+            int col2 = convertToNum(split[4].charAt(0));
             int row1 = convertToNum(split[2].charAt(1));
-            int row2 = convertToNum(split[3].charAt(1));
+            int row2 = convertToNum(split[4].charAt(1));
 
             finale = (Sum( col1, col2, row1, row2 ) );
         } else if (split[1].contains("avg")) {
 
             int col1 = convertToNum(split[2].charAt(0));
-            int col2 = convertToNum(split[3].charAt(0));
+            int col2 = convertToNum(split[4].charAt(0));
             int row1 = convertToNum(split[2].charAt(1));
-            int row2 = convertToNum(split[3].charAt(1));
+            int row2 = convertToNum(split[4].charAt(1));
 
             if (col2 - col1 == 0){
                 finale = ( (Sum( col1, col2, row1, row2) ) / row2 - row1 );
