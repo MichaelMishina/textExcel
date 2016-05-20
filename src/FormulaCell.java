@@ -86,6 +86,7 @@ public class FormulaCell extends Cell {
             }
             finale = result;
         }
+
         return(finale);
     }
 
