@@ -23,9 +23,10 @@ public class FormulaCell extends Cell {
         return(finale);
     }
 
-    public double Sum(int startCol, int endCol, int startRow, int endRow ){
+    public double SumOrAvg(int startCol, int endCol, int startRow, int endRow, boolean avg ){
         double endInt = 0;
         NumberCell tempCell;
+        int avgMultiplier = 0;
         for (int k = startCol; k <= endCol; k++) {
             for (int m = startRow; m <= endRow; m++) {
                 if(usedSheet.getCell(k,m) instanceof NumberCell){
@@ -37,9 +38,14 @@ public class FormulaCell extends Cell {
                 } else {
                     m++;
                 }
+                avgMultiplier++;
             }
         }
-        return(endInt);
+        if(avg == true){
+            return(endInt / avgMultiplier);
+        } else {
+            return (endInt);
+        }
     }
 
 
@@ -47,26 +53,23 @@ public class FormulaCell extends Cell {
         String[] split = formula.split(" ");
         double finale = 0;
 
-        if (split[1].contains("sum")){
+        if (split[1].contains("sum")) {
 
             int col1 = convertToNum(split[2].charAt(0));
             int col2 = convertToNum(split[4].charAt(0));
             int row1 = convertToNum(split[2].charAt(1));
             int row2 = convertToNum(split[4].charAt(1));
 
-            finale = (Sum( col1, col2, row1, row2 ) );
-        } else if (split[1].contains("avg")) {
+            finale = (SumOrAvg(col1, col2, row1, row2, false));
+        } else if(split[1].contains("avg")){
 
             int col1 = convertToNum(split[2].charAt(0));
             int col2 = convertToNum(split[4].charAt(0));
             int row1 = convertToNum(split[2].charAt(1));
             int row2 = convertToNum(split[4].charAt(1));
 
-            if (col2 - col1 == 0){
-                finale = ( (Sum( col1, col2, row1, row2) ) / row2 - row1 );
-            } else if (col2 - col1 != 0){
-                finale = ( (Sum( col1, col2, row1, row2) ) / ( (7 * (col2 - col1) ) + ( (10 * (col2 - col1) ) + (row2 - row1) ) ) );
-            }
+            finale = (SumOrAvg(col1, col2, row1, row2, true));
+
 
         //split[2] is used b/c it skips over the first parenthesis
 
