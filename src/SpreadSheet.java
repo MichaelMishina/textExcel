@@ -96,12 +96,12 @@ public class SpreadSheet {
 
         if( input.contains("\"") ) {
 
-            spreadSheetCells[row][col] = new TextCell(input.substring( input.indexOf( "=" ) + 1 ).trim() );
+            spreadSheetCells[row][col] = new TextCell(input.substring( input.indexOf("= " ) + 1 ).trim() );
 
             System.out.println("Confirmed");
 
         } else if(input.contains("( ") && input.contains( " )" ) ){
-            spreadSheetCells[row][col] = new FormulaCell(input.substring( input.indexOf( "=" ) + 1 ).trim() );
+            spreadSheetCells[row][col] = new FormulaCell(input.substring( input.indexOf("= " ) + 1 ).trim() );
             System.out.println("Confirmed");
         } else {
             spreadSheetCells[row][col] = new NumberCell(input.substring(input.indexOf("= ") + 1).trim());
@@ -110,7 +110,7 @@ public class SpreadSheet {
         return(input);
     }
 
-    public Cell getCell(char col, int row){
+    public Cell getCell(int col, int row){
         return(spreadSheetCells[row][col]);
     }
 }
