@@ -29,7 +29,7 @@ public class FormulaCell extends Cell {
         int avgMultiplier = 0;
         for (int k = startCol; k <= endCol; k++) {
             for (int m = startRow; m <= endRow; m++) {
-                if(usedSheet.getCell(k,m) instanceof NumberCell){
+                    if(usedSheet.getCell(k,m) instanceof NumberCell){
                      tempCell = (NumberCell)( usedSheet.getCell(k,m));
                     endInt += tempCell.getNumData();
                 } else if(usedSheet.getCell(k,m) instanceof FormulaCell){
