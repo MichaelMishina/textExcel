@@ -19,4 +19,9 @@ public class NumberCell extends Cell{
         return(numData);
     }
 
+
+    public void sort(){
+
+
+    }
 }
