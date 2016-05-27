@@ -60,6 +60,10 @@ public class Cell {
     return(output);
     }
 
+    public double getNumData(){
+        return(0);
+    }
+
 
 
 }

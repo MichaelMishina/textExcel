@@ -34,7 +34,7 @@ public class FormulaCell extends Cell {
                     endInt += tempCell.getNumData();
                 } else if(usedSheet.getCell(k,m) instanceof FormulaCell){
                     FormulaCell tempFormCell = (FormulaCell)( usedSheet.getCell(k,m));
-                    endInt += tempFormCell.solve();
+                    endInt += tempFormCell.getNumData();
                 } else {
                     m++;
                 }
@@ -48,8 +48,20 @@ public class FormulaCell extends Cell {
         }
     }
 
+    public double referenceCheck(String position){
+        Cell tempCell;
+        double end;
+        if ( (int)position.charAt(0) - (int)'A' <= 9){
+            tempCell = usedSheet.getCell( ((int) position.charAt(0) - (int)'A'),((int)position.charAt(1) - (int)'1'));
+                end = tempCell.getNumData();
+        } else {
+            end = Double.parseDouble(position);
+        }
+        return(end);
+    }
 
-    public double solve() {
+
+    public double getNumData() {
         String[] split = formula.split(" ");
         double finale = 0;
 
@@ -69,33 +81,40 @@ public class FormulaCell extends Cell {
             int row2 = convertToNum(split[4].charAt(1));
 
             finale = (SumOrAvg(col1, col2, row1, row2, true));
+        } else {
+            //split[1] is used b/c it skips over the first parenthesis
 
 
-        //split[2] is used b/c it skips over the first parenthesis
-
-    } else {
-            double result = Double.parseDouble(split[2]);
-            for (int k = 0; k < split.length - 1; k++) {
-                if (split[k].contains("+")) {
-                    result += (Double.parseDouble(split[k + 1]));
-                } else if (split[k].contains("-")) {
-                    result -= (Double.parseDouble(split[k + 1]));
-                } else if (split[k].contains("*")) {
-                    result *= (Double.parseDouble(split[k + 1]));
-                } else if (split[k].contains("/")){
-                    result /= (Double.parseDouble(split[k + 1]));
+            //k = 2 b/c it skips over the first value.
+                if( (int)split[1].charAt(0) - (int)'A' <= 9 ){
+                    Cell tempCell = usedSheet.getCell( ((int) split[1].charAt(0) - (int)'A'),((int)split[1].charAt(1) - (int)'1'));
+                    split[1] = tempCell.getCellValue();
+                    finale = tempCell.getNumData();
+                } else {
+                    finale = Double.parseDouble(split[1]);
+                }
+                for (int d = 2; d < split.length - 1; d += 2){
+                if (split[d].contains("+")) {
+                    finale += referenceCheck(split[d + 1]);
+                } else if (split[d].contains("-")) {
+                    finale -= referenceCheck(split[d + 1]);
+                } else if (split[d].contains("*")) {
+                    finale *= referenceCheck(split[d + 1]);
+                } else if (split[d].contains("/")){
+                    finale /= referenceCheck(split[d + 1]);
                 }
 
             }
-            finale = result;
-        }
 
+        }
         return(finale);
     }
 
+    
+
 
     public String toSpreadsheet() {
-        double result = solve();
+        double result = getNumData();
         return (truncate(result + ""));
     }
 

@@ -15,17 +15,18 @@ public class NumberCell extends Cell{
         return(truncate(numData + ""));
     }
 
+    @Override
     public double getNumData(){
         return(numData);
     }
 
 
-    public void sort(int startCol, int endCol, int startRow, int endRow ) {
+    public void sort(int startCol, int endCol, int startRow, int endRow, boolean ascend ) {
         for (int k = startCol; k <= endCol; k++) {
             for (int m = startRow; m <= endRow; m++) {
-                if((usedSheet.getCell(k,m) instanceof NumberCell) && (usedSheet.getCell(k,m) instanceof NumberCell)){
+                if((usedSheet.getCell(k,m) instanceof NumberCell) && (usedSheet.getCell(k+1,m) instanceof NumberCell)){
 
-                } else if(usedSheet.getCell(k,m)){
+                } else if(usedSheet.getCell(k,m) instanceof FormulaCell){
 
                 } else {
                     m++;
