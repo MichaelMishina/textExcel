@@ -110,7 +110,7 @@ public class FormulaCell extends Cell {
         return(finale);
     }
 
-    
+
 
 
     public String toSpreadsheet() {
