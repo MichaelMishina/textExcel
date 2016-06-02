@@ -1,6 +1,7 @@
 /**
  * Created by bal_mcmishina on 3/8/2016.
  */
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class SpreadSheet {
@@ -20,13 +21,12 @@ public class SpreadSheet {
     private Cell[][] spreadSheetCells;
 
 
-    public SpreadSheet(){
+    public SpreadSheet() {
         spreadSheetCells = new Cell[ROWCOUNT][COLCOUNT];
         clearSheet();
     }
 
-    public void clearSheet()
-    {
+    public void clearSheet() {
         for (int row = 0; row < ROWCOUNT; row++) {
             for (int col = 0; col < COLCOUNT; col++) {
                 spreadSheetCells[row][col] = new Cell();
@@ -40,7 +40,7 @@ public class SpreadSheet {
         for (int row = 0; row < ROWCOUNT; row++) {
             //This is to name the specific rows. The IF statement is to make sure to add an additional character to the
             //row label if the row is a number greater than 9 without messing up the spacing of the whole table.
-            if (row < (ROWCOUNT -1)) {
+            if (row < (ROWCOUNT - 1)) {
                 out += ("     " + (row + 1) + "      |");
             } else {
                 out += ("     " + (row + 1) + "     |");
@@ -58,9 +58,9 @@ public class SpreadSheet {
         return out;
     }
 
-    public void clearCellValue (String input) {
+    public void clearCellValue(String input) {
         int col = (int) input.charAt(0) - (int) 'A';
-        int row = (Integer.parseInt(input.substring(1,2) ) - 1);
+        int row = (Integer.parseInt(input.substring(1, 2)) - 1);
 
         spreadSheetCells[row][col] = new Cell();
         //Any method with "Confirmed" at the end doesn't actually return anything, so the "Confirmed" is to confirm success.
@@ -68,9 +68,8 @@ public class SpreadSheet {
 
     }
 
-    public void clearRange (String input) {
+    public void clearRange(String input) {
         // clear a range of cells
-
 
 
     }
@@ -78,10 +77,10 @@ public class SpreadSheet {
     public String printCellValue(String input) {
         String cellValue = "Invalid input";
         int col = (int) input.charAt(0) - (int) 'A';
-        int row = (Integer.parseInt(input.substring(1,2) ) - 1);
+        int row = (Integer.parseInt(input.substring(1, 2)) - 1);
 
-        if ( ( (col >= 0) && (col < COLCOUNT) ) &&
-                ( (row >= 0) && (row < ROWCOUNT) ) ) {
+        if (((col >= 0) && (col < COLCOUNT)) &&
+                ((row >= 0) && (row < ROWCOUNT))) {
             cellValue = (input + " = " + spreadSheetCells[row][col]);
 
         }
@@ -89,28 +88,86 @@ public class SpreadSheet {
         return cellValue;
     }
 
-    public String setCellValue(String input){
+    public String setCellValue(String input) {
         int col = (int) input.charAt(0) - (int) 'A';
-        int row = (Integer.parseInt(input.substring( 1,2 ) ) - 1);
-        char quote = (char)input.indexOf( ( "=" ) + 2 );
+        int row = (Integer.parseInt(input.substring(1, 2)) - 1);
+        char quote = (char) input.indexOf(("=") + 2);
 
-        if( input.contains("\"") ) {
+        if (input.contains("\"")) {
 
-            spreadSheetCells[row][col] = new TextCell(input.substring( input.indexOf("= " ) + 1 ).trim() );
+            spreadSheetCells[row][col] = new TextCell(input.substring(input.indexOf("= ") + 1).trim());
 
             System.out.println("Confirmed");
 
-        } else if(input.contains("( ") && input.contains( " )" ) ){
-            spreadSheetCells[row][col] = new FormulaCell(input.substring( input.indexOf("= " ) + 1 ).trim(),this );
+        } else if (input.contains("( ") && input.contains(" )")) {
+            spreadSheetCells[row][col] = new FormulaCell(input.substring(input.indexOf("= ") + 1).trim(), this);
             System.out.println("Confirmed");
         } else {
             spreadSheetCells[row][col] = new NumberCell(input.substring(input.indexOf("= ") + 1).trim());
             System.out.println("Confirmed");
         }
-        return(input);
+        return (input);
     }
 
-    public Cell getCell(int col, int row){
-        return(spreadSheetCells[row][col]);
+    public Cell getCell(int col, int row) {
+        return (spreadSheetCells[row][col]);
+    }
+
+    public void sort(int startCol, int endCol, int startRow, int endRow, boolean ascent) {
+        ArrayList<NumberCell> tempArray = new ArrayList<>();
+        ArrayList<Cell> tempArray2 = new ArrayList<>();
+        int tempInt = 0;
+        // seperates the number cells from the formula and text cells
+        for (int k = startCol; k <= endCol; k++) {
+            for (int m = startRow; m <= endRow; m++) {
+                if (getCell(k, m) instanceof NumberCell) {
+                    tempArray.add((NumberCell) (getCell(k, m)));
+                } else {
+                    tempArray2.add(getCell(k, m));
+                }
+                tempInt += 1;
+            }
+        }
+
+        for (int i = 0; i < tempArray.size() - 1; i++) {
+            int minPos = i;
+
+            for (int x = i + 1; x < tempArray.size(); x++) {
+                if (tempArray.get(x).getNumData() < tempArray.get(minPos).getNumData()) {
+                    minPos = x;
+                }
+            }
+
+            NumberCell tempNumCell = tempArray.get(minPos);
+
+            tempArray.set(minPos, tempArray.get(i));
+            tempArray.set(i, tempNumCell);
+        }
+
+        //initial values
+        int startPoint = 0;
+        int incriment = 1;
+
+        //initial values if decending
+        if (!ascent){
+            startPoint = (tempArray.size() + tempArray2.size() - 1);
+            incriment = -1;
+        }
+
+        //assembles the final array list
+        for (int i = 0; i < tempArray.size(); i++){
+            if (incriment < 0){
+                tempArray2.add(tempArray.get(i));
+            }else{
+                tempArray2.add(0 , tempArray.get(tempArray.size() - 1 - i));
+            }
+        }
+
+
+        for (int k = startCol; k <= endCol; k++) {
+            for (int m = startRow; m <= endRow; m++) {
+
+            }
+        }
     }
 }
