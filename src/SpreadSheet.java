@@ -131,7 +131,7 @@ public class SpreadSheet {
         return( (int) callCell.charAt(0) - (int) 'A');
     }
 
-    public void sort(String input, boolean ascent) {
+    public void sort(int startCol, int endCol, int startRow, int endRow, boolean ascent) {
         ArrayList<NumberCell> tempArray = new ArrayList<>();
         ArrayList<Cell> tempArray2 = new ArrayList<>();
         int tempInt = 0;
