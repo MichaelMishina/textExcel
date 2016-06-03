@@ -28,16 +28,16 @@ public class TextExcelMain {
             boolean finisher = false;
 
 
-            if ((input.toLowerCase().contains("print"))) {
-                System.out.println(sheet.printSheet() );
+        if ((input.toLowerCase().contains("print"))) {
+            System.out.println(sheet.printSheet());
 
-            } else if ((input.toLowerCase().contains("exit"))) {
-                System.out.println("Process: end");
-                finisher = true;
-            }else if ((input.contains( " = "))){
-                sheet.setCellValue(input);
-            } else if ((input.toLowerCase().contains("clear"))) {
-                String[] clearArray = input.split(" ");
+        } else if ((input.toLowerCase().contains("exit"))) {
+            System.out.println("Process: end");
+            finisher = true;
+        } else if ((input.contains(" = "))) {
+            sheet.setCellValue(input);
+        } else if ((input.toLowerCase().contains("clear"))) {
+            String[] clearArray = input.split(" ");
 
                 if (clearArray.length == 1) {
                     sheet.clearSheet();
@@ -48,7 +48,16 @@ public class TextExcelMain {
                 }
 
 
+        } else if ((input.contains("sort"))) {
+            String[] sortArray = input.split(" ");
+
+            if (sortArray[1].contains("a")) {
+                sheet.sort();
             } else {
+                return (false);
+            }
+
+        }else{
                     System.out.println(sheet.printCellValue(input));
                 }
 
