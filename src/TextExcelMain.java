@@ -7,6 +7,12 @@ import java.util.Scanner;
 
 public class TextExcelMain {
 
+    /**
+     * Method Description - Beginning of the code, tells the user to enter a command until the boolean, finisher, is true.
+     *
+     * @param args   - command line arguments
+     *
+     */
     public static void main(String[]args){
         boolean finisher = false;
         Scanner commandScanner = new Scanner(System.in);
@@ -23,7 +29,15 @@ public class TextExcelMain {
 
 
     }
-        //something something
+
+    /**
+     * Method Description - takes in the input from the scanner, and uses the appropriate method
+     *
+     * @param input - the input from the scanner created in the main method.
+     * @param sheet - the new spreadsheet, with all of the methods that every textExcel needs.
+     * @return - returns the finisher. This is done every time until finisher is true, which ends the code.
+     *
+     */
     public static boolean commandInput(String input, SpreadSheet sheet){
             boolean finisher = false;
 

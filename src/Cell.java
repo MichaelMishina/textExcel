@@ -16,16 +16,34 @@ public class Cell {
         originalData = EMPTY_CELL_VALUE;
     }
 
+    /**
+     * Method description - prints the cell value to the spreadsheet.
+     * @return - the twelve empty spaces.
+     */
     public String toSpreadsheet(){
         return EMPTY_CELL;
     }
 
+    /**
+     * Method description - returns the data in the cell.
+     * @return - returns the data in the cell.
+     */
     public String toString() { return originalData; }
 
+    /**
+     * Method description - gets the value in the cell.
+     * @return - returns the cell value.
+     */
     public String getCellValue(){
         return originalData;
     }
 
+    /**
+     * Method description - shortens the data if it is greater than 12 characters.
+     *
+     * @param data - the data to be shortened.
+     * @return - returns the truncated data in the cell.
+     */
     public String truncate(String data) {
 
         String output = "";
@@ -60,6 +78,10 @@ public class Cell {
     return(output);
     }
 
+    /**
+     * Method description - returns the number in the empty cell.
+     * @return - returns 0, as the cell is empty.
+     */
     public double getNumData(){
         return(0);
     }

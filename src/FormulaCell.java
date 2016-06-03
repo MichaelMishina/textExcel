@@ -12,7 +12,12 @@ public class FormulaCell extends Cell {
         usedSheet = formulaSheet;
     }
 
-
+    /**
+     * Method description - converts the letter in a cell id to a number.
+     *
+     * @param character - the letter in the cell id.
+     * @return - returns the letter in the cell id as a number.
+     */
     public int convertToNum(char character){
         int finale;
         if ( (((int)character - (int)'1') >= 0) && ((int)character - (int)'1' <=  9)){
@@ -23,6 +28,16 @@ public class FormulaCell extends Cell {
         return(finale);
     }
 
+    /**
+     * Method description - determines if the sum or average command is called, and returns the result.
+     *
+     * @param startCol - the column in the first cell id
+     * @param endCol - the column in the second cell id
+     * @param startRow - the row in the first cell id
+     * @param endRow - the row in the second cell id
+     * @param avg - this is the boolean to check if the average command is called.
+     * @return - returns either the summed range or the averaged range.
+     */
     public double SumOrAvg(int startCol, int endCol, int startRow, int endRow, boolean avg ){
         double endInt = 0;
         NumberCell tempCell;
@@ -48,6 +63,13 @@ public class FormulaCell extends Cell {
         }
     }
 
+    /**
+     * Method description - checks if the formula contains a cell reference.
+     *
+     * @param position - part of the formula that may or may not be a cell reference.
+     * @return - returns the number at the cell reference, or the number if it isn't a cell reference.
+     *
+     */
     public double referenceCheck(String position){
         Cell tempCell;
         double end;
@@ -60,7 +82,11 @@ public class FormulaCell extends Cell {
         return(end);
     }
 
-
+    /**
+     * Method description - runs any operators that the formula may contain.
+     *
+     * @return - returns the number that the formula results in.
+     */
     public double getNumData() {
         String[] split = formula.split(" ");
         double finale = 0;
@@ -111,8 +137,11 @@ public class FormulaCell extends Cell {
     }
 
 
-
-
+    /**
+     * Method description - prints things to the spreadsheet
+     *
+     * @return - returns the truncated num data.
+     */
     public String toSpreadsheet() {
         double result = getNumData();
         return (truncate(result + ""));
