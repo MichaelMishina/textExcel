@@ -23,6 +23,7 @@ A6 = ( sum A1 A5 )
 print
 A6 = ( avg A1 A5 )
 print
+clear A1 - A4
 
 //CheckPoint 4
 A1 = ( 12 + 14 )

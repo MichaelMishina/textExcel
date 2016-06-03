@@ -44,7 +44,7 @@ public class TextExcelMain {
                 } else if (clearArray.length == 2) {
                     sheet.clearCellValue(clearArray[1]);
                 } else {
-                    return (true);
+                    sheet.clearRange(input.substring(input.indexOf("r") + 1).trim() );
                 }
 
 

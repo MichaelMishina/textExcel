@@ -69,9 +69,18 @@ public class SpreadSheet {
     }
 
     public void clearRange (String input) {
-        // clear a range of cells
+        String[] separate = input.split(" ");
+        int startCol = getCol(separate[0]);
+        int endCol = getCol(separate[2]);
+        int startRow = getRow(separate[0]);
+        int endRow = getRow(separate[2]);
+        for(int row = startRow;row <= endRow;row++){
+            for(int col = startCol;col <= endCol;col++){
+                spreadSheetCells[row][col] = new Cell();
+            }
+        }
 
-
+        System.out.println("Confirmed");
 
     }
 
@@ -112,5 +121,13 @@ public class SpreadSheet {
 
     public Cell getCell(int col, int row){
         return(spreadSheetCells[row][col]);
+    }
+
+    public int getRow(String cellCall){
+        return( (int) cellCall.charAt(1) - (int) '1');
+    }
+
+    public int getCol(String callCell){
+        return( (int) callCell.charAt(0) - (int) 'A');
     }
 }
