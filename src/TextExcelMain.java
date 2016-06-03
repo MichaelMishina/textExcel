@@ -51,8 +51,7 @@ public class TextExcelMain {
         } else if ((input.contains("sort"))) {
             String[] sortArray = input.split(" ");
 
-            if (sortArray[1].contains("a")) {
-
+            if (sortArray[0].contains("a")) {
 
                 sheet.sort(input, true);
             } else {

@@ -1,0 +1,12 @@
+A1 = 5
+A2 = "hi"
+A3 = -36
+B1 = "goodbye"
+B2 = 7
+B3 = 5.95
+C1 = ( 1 + 1 )
+C2 = 9.47
+C3 = -3487
+sorta A1 - C3
+print
+sortd A1 - C3

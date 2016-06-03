@@ -26,6 +26,9 @@ public class SpreadSheet {
         clearSheet();
     }
 
+    /**
+     * clears the entire spreadsheet
+     */
     public void clearSheet() {
         for (int row = 0; row < ROWCOUNT; row++) {
             for (int col = 0; col < COLCOUNT; col++) {
@@ -34,6 +37,10 @@ public class SpreadSheet {
         }
     }
 
+    /**
+     * prints the spreadsheet
+     * @return
+     */
     public String printSheet() {
         String out = HEADER + SEPARATOR;
 
@@ -58,6 +65,10 @@ public class SpreadSheet {
         return out;
     }
 
+    /**
+     * clears a single cell
+     * @param input
+     */
     public void clearCellValue (String input) {
         int col = (int) input.charAt(0) - (int) 'A';
         int row = (Integer.parseInt(input.substring(1,2) ) - 1);
@@ -68,6 +79,10 @@ public class SpreadSheet {
 
     }
 
+    /**
+     * clears a range of cells
+     * @param input
+     */
     public void clearRange (String input) {
         String[] separate = input.split(" ");
         int startCol = getCol(separate[0]);
@@ -84,6 +99,11 @@ public class SpreadSheet {
 
     }
 
+    /**
+     * prints a single cell
+     * @param input
+     * @return
+     */
     public String printCellValue(String input) {
         String cellValue = "Invalid input";
         int col = (int) input.charAt(0) - (int) 'A';
@@ -98,6 +118,11 @@ public class SpreadSheet {
         return cellValue;
     }
 
+    /**
+     * sets the value of a cell
+     * @param input
+     * @return
+     */
     public String setCellValue(String input) {
         int col = (int) input.charAt(0) - (int) 'A';
         int row = (Integer.parseInt(input.substring( 1,2 ) ) - 1);
@@ -119,28 +144,49 @@ public class SpreadSheet {
         return (input);
     }
 
+    /**
+     * gets the value of a cell in the sheet
+     * @param col
+     * @param row
+     * @return
+     */
     public Cell getCell(int col, int row){
         return(spreadSheetCells[row][col]);
     }
 
+    /**
+     * gets the row value from the input
+     * @param cellCall
+     * @return
+     */
     public int getRow(String cellCall){
         return( (int) cellCall.charAt(1) - (int) '1');
     }
 
+    /**
+     * gets the column value from the input
+     * @param callCell
+     * @return
+     */
     public int getCol(String callCell){
         return( (int) callCell.charAt(0) - (int) 'A');
     }
 
+    /**
+     * sorts a range of cells
+     * @param input
+     * @param ascent
+     */
     public void sort(String input, boolean ascent) {
         String[] sortArray = input.split(" ");
-        int startCol = sortArray[1].charAt(0) - (int) 'A';
-        int startRow = sortArray[1].indexOf(1);
-        int endCol = sortArray[3].charAt(0) - (int) 'A';
-        int endRow = sortArray[3].indexOf(1);
+        int startCol = getCol(sortArray[1]);
+        int startRow = getRow(sortArray[1]);
+        int endCol = getCol(sortArray[3]);
+        int endRow = getRow(sortArray[3]);
 
         ArrayList<NumberCell> tempArray = new ArrayList<>();
         ArrayList<Cell> tempArray2 = new ArrayList<>();
-        int tempInt = 0;
+
         // seperates the number cells from the formula and text cells
         for (int k = startCol; k <= endCol; k++) {
             for (int m = startRow; m <= endRow; m++) {
@@ -149,10 +195,10 @@ public class SpreadSheet {
                 } else {
                     tempArray2.add(getCell(k, m));
                 }
-                tempInt += 1;
             }
         }
 
+        //sorting the array using selection sort
         for (int i = 0; i < tempArray.size() - 1; i++) {
             int minPos = i;
 
@@ -169,12 +215,12 @@ public class SpreadSheet {
         }
 
         //initial values
-        int startPoint = 0;
+        int index = 0;
         int incriment = 1;
 
         //initial values if decending
         if (!ascent){
-            startPoint = (tempArray.size() + tempArray2.size() - 1);
+            index = (tempArray.size() + tempArray2.size() - 1);
             incriment = -1;
         }
 
@@ -187,10 +233,11 @@ public class SpreadSheet {
             }
         }
 
-
-        for (int k = startCol; k <= endCol; k++) {
-            for (int m = startRow; m <= endRow; m++) {
-
+        //puting sorted values back into the sheet
+        for (int col = startCol; col <= endCol; col++) {
+            for (int row = startRow; row <= endRow; row++) {
+                spreadSheetCells[col][row] = tempArray2.get(index);
+                index += incriment;
             }
         }
     }
