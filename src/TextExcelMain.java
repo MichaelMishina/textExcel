@@ -53,8 +53,10 @@ public class TextExcelMain {
 
             if (sortArray[1].contains("a")) {
 
+
+                sheet.sort(input, true);
             } else {
-                return (false);
+                sheet.sort (input, false);
             }
 
         }else{
