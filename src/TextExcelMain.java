@@ -52,7 +52,7 @@ public class TextExcelMain {
             String[] sortArray = input.split(" ");
 
             if (sortArray[1].contains("a")) {
-                sheet.sort(input, true);
+
             } else {
                 return (false);
             }
