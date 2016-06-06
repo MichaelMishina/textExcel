@@ -27,7 +27,7 @@ public class SpreadSheet {
     }
 
     /**
-     * method description - clears the entire spreadsheet
+     * Method description - clears the entire spreadsheet.
      */
     public void clearSheet() {
         for (int row = 0; row < ROWCOUNT; row++) {
@@ -35,11 +35,13 @@ public class SpreadSheet {
                 spreadSheetCells[row][col] = new Cell();
             }
         }
+        System.out.println("Confirmed");
     }
 
     /**
-     * method description - prints the spreadsheet
-     * @return - the entire spreadsheet
+     * Method description - prints the spreadsheet
+     *
+     * @return - prints out the spreadsheet
      */
     public String printSheet() {
         String out = HEADER + SEPARATOR;
@@ -66,8 +68,8 @@ public class SpreadSheet {
     }
 
     /**
-     * method description - clears a single cell
-     * @param input - the position of the cell being cleared
+     * Method description - clears a single cell
+     * @param input - the cell id to be cleared.
      */
     public void clearCellValue (String input) {
         int col = (int) input.charAt(0) - (int) 'A';
@@ -80,8 +82,8 @@ public class SpreadSheet {
     }
 
     /**
-     * method description - clears a range of cells
-     * @param input - the range that is being cleared
+     * Method description - clears a range of cells
+     * @param input - the range of cells to be cleared
      */
     public void clearRange (String input) {
         String[] separate = input.split(" ");
@@ -100,9 +102,10 @@ public class SpreadSheet {
     }
 
     /**
-     * method description - prints a single cell
-     * @param input - a cell in the sheet
-     * @return - the value of a cell
+     * Method description - prints a single cell
+     *
+     * @param input - the cell to be printed
+     * @return - the value of the requested cell
      */
     public String printCellValue(String input) {
         String cellValue = "Invalid input";
@@ -187,13 +190,13 @@ public class SpreadSheet {
         ArrayList<NumberCell> tempArray = new ArrayList<>();
         ArrayList<Cell> tempArray2 = new ArrayList<>();
 
-        // seperates the number cells from the formula and text cells
-        for (int k = startCol; k <= endCol; k++) {
-            for (int m = startRow; m <= endRow; m++) {
-                if (getCell(k, m) instanceof NumberCell) {
-                    tempArray.add((NumberCell) (getCell(k, m)));
+        // separates the number cells from the formula and text cells
+        for (int row = startRow; row <= endRow; row++) {
+            for (int col = startCol; col <= endCol; col++) {
+                if (getCell(col, row) instanceof NumberCell) {
+                    tempArray.add((NumberCell) (getCell(col, row)));
                 } else {
-                    tempArray2.add(getCell(k, m));
+                    tempArray2.add(getCell(col, row));
                 }
             }
         }
@@ -216,29 +219,30 @@ public class SpreadSheet {
 
         //initial values
         int index = 0;
-        int incriment = 1;
+        int increment = 1;
 
-        //initial values if decending
+        //initial values if descending
         if (!ascent){
             index = (tempArray.size() + tempArray2.size() - 1);
-            incriment = -1;
+            increment = -1;
         }
 
         //assembles the final array list
         for (int i = 0; i < tempArray.size(); i++){
-            if (incriment < 0){
+            if (increment < 0){
                 tempArray2.add(tempArray.get(i));
             }else{
                 tempArray2.add(0 , tempArray.get(tempArray.size() - 1 - i));
             }
         }
 
-        //puting sorted values back into the sheet
+        //putting sorted values back into the sheet
         for (int col = startCol; col <= endCol; col++) {
             for (int row = startRow; row <= endRow; row++) {
-                spreadSheetCells[col][row] = tempArray2.get(index);
-                index += incriment;
+                spreadSheetCells[row][col] = tempArray2.get(index);
+                index += increment;
             }
         }
+        System.out.println("Confirmed");
     }
 }
