@@ -27,7 +27,7 @@ public class SpreadSheet {
     }
 
     /**
-     * clears the entire spreadsheet
+     * method description - clears the entire spreadsheet
      */
     public void clearSheet() {
         for (int row = 0; row < ROWCOUNT; row++) {
@@ -38,8 +38,8 @@ public class SpreadSheet {
     }
 
     /**
-     * prints the spreadsheet
-     * @return
+     * method description - prints the spreadsheet
+     * @return - the entire spreadsheet
      */
     public String printSheet() {
         String out = HEADER + SEPARATOR;
@@ -66,8 +66,8 @@ public class SpreadSheet {
     }
 
     /**
-     * clears a single cell
-     * @param input
+     * method description - clears a single cell
+     * @param input - the position of the cell being cleared
      */
     public void clearCellValue (String input) {
         int col = (int) input.charAt(0) - (int) 'A';
@@ -80,8 +80,8 @@ public class SpreadSheet {
     }
 
     /**
-     * clears a range of cells
-     * @param input
+     * method description - clears a range of cells
+     * @param input - the range that is being cleared
      */
     public void clearRange (String input) {
         String[] separate = input.split(" ");
@@ -100,9 +100,9 @@ public class SpreadSheet {
     }
 
     /**
-     * prints a single cell
-     * @param input
-     * @return
+     * method description - prints a single cell
+     * @param input - a cell in the sheet
+     * @return - the value of a cell
      */
     public String printCellValue(String input) {
         String cellValue = "Invalid input";
@@ -119,9 +119,9 @@ public class SpreadSheet {
     }
 
     /**
-     * sets the value of a cell
-     * @param input
-     * @return
+     * method description - sets the value of a cell
+     * @param input - the cel and the value of the cell
+     * @return - the cell value
      */
     public String setCellValue(String input) {
         int col = (int) input.charAt(0) - (int) 'A';
@@ -145,37 +145,37 @@ public class SpreadSheet {
     }
 
     /**
-     * gets the value of a cell in the sheet
-     * @param col
-     * @param row
-     * @return
+     * method description - gets the value of a cell in the sheet
+     * @param col - the column
+     * @param row - the row
+     * @return - a cell within the spreadsheet
      */
     public Cell getCell(int col, int row){
         return(spreadSheetCells[row][col]);
     }
 
     /**
-     * gets the row value from the input
-     * @param cellCall
-     * @return
+     * method description - gets the row value from the input
+     * @param cellCall - the cell position ex. A1
+     * @return - the row of the cell
      */
     public int getRow(String cellCall){
         return( (int) cellCall.charAt(1) - (int) '1');
     }
 
     /**
-     * gets the column value from the input
-     * @param callCell
-     * @return
+     * method description - gets the column value from the input
+     * @param callCell - the cell position ex. A1
+     * @return - the column of the cell
      */
     public int getCol(String callCell){
         return( (int) callCell.charAt(0) - (int) 'A');
     }
 
     /**
-     * sorts a range of cells
-     * @param input
-     * @param ascent
+     * method description - sorts a range of cells
+     * @param input - the input string
+     * @param ascent - the direction in which the string is being sorted
      */
     public void sort(String input, boolean ascent) {
         String[] sortArray = input.split(" ");
